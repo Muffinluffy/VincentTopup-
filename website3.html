@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinzzwood - topup games</title>
+    <link href  ="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --accent-color: #fd79a8;
+            --dark-color: #2d3436;
+            --light-color: #f5f6fa;
+            --success-color: #00b894;
+            --warning-color: #fdcb6e;
+            --error-color: #d63031;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #0f172a;  /* Space dark blue */
+            color: #e2e8f0;  /* Moon gray */
+            line-height: 1.6;
+            background-image: linear-gradient(to bottom, rgba(17, 24, 39, 0.8), rgba(15, 23, 42, 1));
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/374ca196-eb81-4f1b-a9b7-f110b8721135.png') no-repeat center center/cover;
+            position: relative;
+            color: white;
+            background-image: linear-gradient(to right, rgba(31, 41, 55, 0.9), rgba(12, 74, 110, 0.9)), 
+                            url('https://images.unsplash.com/photo-1534796636912-3e95eb64d487?q=80&w=1920');
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .cta-button:hover {
+            background-color: #e84393;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Top-Up Section */
+        .topup-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .topup-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .topup-options {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .topup-form {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+        }
+        
+        .amount-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .amount-option {
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .amount-option:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(108, 92, 231, 0.05);
+        }
+        
+        .amount-option input {
+            display: none;
+        }
+        
+        .amount-option.active {
+            border-color: var(--primary-color);
+            background-color: rgba(108, 92, 231, 0.1);
+        }
+        
+        .payment-methods {
+            margin-top: 20px;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .payment-method.active {
+            border-color: var(--primary-color);
+            background-color: rgba(108, 92, 231, 0.1);
+        }
+        
+        .payment-method input {
+            margin-right: 10px;
+        }
+        
+        .payment-method img {
+            width: 40px;
+            height: auto;
+            margin-right: 15px;
+        }
+        
+        /* Services Section */
+        .services-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .service-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-right: 20px;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        .feature-content p {
+            color: #666;
+        }
+        
+        /* Testimonials */
+        .testimonials-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        .author-info h4 {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+        }
+        
+        .author-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                background: rgba(108, 92, 231, 0.9);
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                padding: 40px;
+                transition: all 0.5s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .amount-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span>Vinzzwood Topup</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#topup">Top Up</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Tempat Topup yang aman dan cepat</h1>
+                <p>Halo!! Selamat datang di Vinzzwood Topup</p>
+                <a href="#topup" class="cta-button">Top Up Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Up Section -->
+    <section id="topup" class="topup-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Metode Pembayaran</h2>
+                <p>Isi ulang akun digital Anda dari mana saja di kosmos</p>
+            </div>
+            
+            <div class="topup-container">
+                <div class="topup-options">
+                    <h3>Pilih Produk</h3>
+                    <div class="form-group">
+                        <label for="product-type">Tipe Produk</label>
+                        <select id="product-type" class="form-control">
+                            <option value="" disabled selected>Silahkan pilih</option>
+                            <option value="mobile">Mobile Legends Bang Bang</option>
+                            <option value="data">CODM</option>
+                            <option value="gaming">Free Fire</option>
+                            <option value="utilities">Utilities Bill</option>
+                            <option value="esim">eSIM Activation</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="operator">Operator</label>
+                        <select id="operator" class="form-control">
+                            <option value="" disabled selected>Select operator</option>
+                            <option value="telkomsel">Telkomsel</option>
+                            <option value="xl">XL Axiata</option>
+                            <option value="indosat">Indosat Ooredoo</option>
+                            <option value="three">3 (Tri)</option>
+                            <option value="smartfren">Smartfren</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Select Amount</label>
+                        <div class="amount-grid">
+                            <label class="amount-option">
+                                <input type="radio" name="amount" value="10000">
+                                <div>RP 50.000</div>
+                            </label>
+                            <label class="amount-option">
+                                <input type="radio" name="amount" value="50000">
+                                <div>RP 20.000</div>
+                            </label>
+                            <label class="amount-option">
+                                <input type="radio" name="amount" value="100000">
+                                <div>RP 25.000</div>
+                            </label>
+                            <label class="amount-option">
+                                <input type="radio" name="amount" value="200000">
+                                <div>RP 40.000</div>
+                            </label>
+                            <label class="amount-option">
+                                <input type="radio" name="amount" value="500000">
+                                <div>RP 150.000</div>
+                            </label>
+                            <label class="amount-option">
+                                <input type="radio" name="amount" value="1000000">
+                                <div>RP 190.000</div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="custom-amount">Kamu, Bisa custom berapa yang kamu mau</label>
+                        <input type="number" id="custom-amount" class="form-control" placeholder="Enter amount">
+                    </div>
+                </div>
+                
+                <div class="topup-form">
+                    <h3>Payment Details</h3>
+                    <form id="payment-form">
+                        <div class="form-group">
+                            <label for="phone-number">Phone Number</label>
+                            <input type="tel" id="phone-number" class="form-control" placeholder="Enter phone number" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter email address" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Payment Method</label>
+                            <div class="payment-methods">
+                                <label class="payment-method">
+                                    <input type="radio" name="payment-method" value="credit-card" checked>
+                                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8b6eafe0-dfd9-4cf1-bbe5-70cb04541f02.png" alt="Credit card payment icon showing a white credit card on blue background">
+                                    <span>Credit/Debit Card</span>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="payment-method" value="paypal">
+                                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d5534770-23ec-4eec-93d4-94ce9bc9e7b7.png" alt="PayPal logo showing the white and blue PayPal lettering">
+                                    <span>PayPal</span>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="payment-method" value="bank-transfer">
+                                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9ee1b35a-b693-4084-8848-cdf2af3e3660.png" alt="Bank transfer icon showing white building with columns on green background">
+                                    <span>Bank Transfer</span>
+                                </label>
+                                <label class="payment-method">
+                                    <input type="radio" name="payment-method" value="ewallet">
+                                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/04da1ac2-d194-440a-ac23-a7a3598fc340.png" alt="Digital wallet icon showing white wallet shape with purple background">
+                                    <span>E-Wallet</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div id="credit-card-details">
+                            <div class="form-group">
+                                <label for="card-number">Card Number</label>
+                                <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="card-name">Cardholder Name</label>
+                                <input type="text" id="card-name" class="form-control" placeholder="Name on card">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="expiry-date">Expiry Date</label>
+                                <input type="text" id="expiry-date" class="form-control" placeholder="MM/YY">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" class="form-control" placeholder="123">
+                            </div>
+                        </div>
+                        
+                        <div id="bank-details" style="display: none;">
+                            <div class="form-group">
+                                <label for="bank-name">Bank Name</label>
+                                <select id="bank-name" class="form-control">
+                                    <option value="" disabled selected>Select bank</option>
+                                    <option value="bca">BCA</option>
+                                    <option value="mandiri">Mandiri</option>
+                                    <option value="bri">BRI</option>
+                                    <option value="bni">BNI</option>
+                                    <option value="cimb">CIMB Niaga</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="account-name">Account Name</label>
+                                <input type="text" id="account-name" class="form-control" placeholder="Your name as in bank account">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="account-number">Account Number</label>
+                                <input type="text" id="account-number" class="form-control" placeholder="1234567890">
+                            </div>
+                        </div>
+                        
+                        <div id="paypal-details" style="display: none;">
+                            <p>You will be redirected to PayPal to complete your payment securely.</p>
+                        </div>
+                        
+                        <div id="ewallet-details" style="display: none;">
+                            <div class="form-group">
+                                <label for="ewallet-type">E-Wallet Provider</label>
+                                <select id="ewallet-type" class="form-control">
+                                    <option value="" disabled selected>Select e-wallet</option>
+                                    <option value="gopay">GoPay</option>
+                                    <option value="ovo">OVO</option>
+                                    <option value="dana">DANA</option>
+                                    <option value="linkaja">LinkAja</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ewallet-number">E-Wallet Number</label>
+                                <input type="text" id="ewallet-number" class="form-control" placeholder="Enter your e-wallet number">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="cta-button" style="width: 100%;">Complete Payment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We provide a variety of digital top-up services to meet all your needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6a681883-1d4a-4ca8-a4a4-ede6da30cd82.png" alt="Mobile phone with glowing screen showing network signal bars" class="service-image">
+                    <div class="service-content">
+                        <h3>Mobile Credit</h3>
+                        <p>Top up prepaid credit for all major mobile operators instantly. Never run out of balance again with our easy recharge options.</p>
+                        <a href="#topup" class="cta-button">Recharge Now</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6c7a30fb-20cc-4345-b2d6-2a1e94a0c30c.png" alt="Computer screen with game controller overlay showing popular online games" class="service-image">
+                    <div class="service-content">
+                        <h3>Gaming Credits</h3>
+                        <p>Purchase credits for your favorite games including Mobile Legends, PUBG, Free Fire, and many more gaming platforms.</p>
+                        <a href="#topup" class="cta-button">Get Credits</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e88a0ab0-cfe1-4a45-a4a6-06f7e3415e09.png" alt="Electricity meter with digital display showing energy consumption data" class="service-image">
+                    <div class="service-content">
+                        <h3>Utilities Payment</h3>
+                        <p>Pay your electricity, water, and internet bills quickly and securely without leaving your home.</p>
+                        <a href="#topup" class="cta-button">Pay Bills</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mengapa Memilih Kami?</h2>
+                <p>Temukan apa yang menjadikan kami pilihan utama untuk isi ulang digital</p>
+            </div>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-content">
+                        <h3>Instant Delivery</h3>
+                        <p>Your top-up is delivered within seconds after completing payment. No waiting time required.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-content">
+                        <h3>Secure Payments</h3>
+                        <p>All transactions are protected with bank-grade encryption to keep your payment secure.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-content">
+                        <h3>24/7 Support</h3>
+                        <p>Our customer support team is available round the clock to assist you with any issues.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🔁</div>
+                    <div class="feature-content">
+                        <h3>Auto-TopUp</h3>
+                        <p>Set up automatic recharges when your balance gets low and never run out of credit.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-content">
+                        <h3>Bonus Rewards</h3>
+                        <p>Earn loyalty points on every transaction that you can redeem for discounts.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🌐</div>
+                    <div class="feature-content">
+                        <h3>Wide Coverage</h3>
+                        <p>Supporting operators and services from multiple countries across the region.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Customer</h2>
+                <p>Mitra tepercaya Anda untuk pengisian ulang digital dan layanan isi ulang pulsa di berbagai operator dan platform.</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Ternyata, Murah Sekali dan juga cepat"
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/20d89c9e-4452-4ec0-b729-e6ff58d5999d.png" alt="Portrait of a young male gamer with headphones looking at camera" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Aaron Tan</h4>
+                            <p>Gaming Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Wow, Bagus banget Website Ini"
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d278e0d4-e1d7-48fc-8e8b-2133265d6fad.png" alt="Professional headshot of a businesswoman wearing a blazer" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Sarah Lim</h4>
+                            <p>Business Consultant</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Saya menggunakan Website ini, Sangat aman."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/95c00d73-e281-4199-9104-c9fc7e8e673f.png" alt="Smiling college student wearing a university sweatshirt" class="author-avatar">
+                        <div class="author-info">
+                            <h4>David Chen</h4>
+                            <p>University Student</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Vinzzwood Topup</h3>
+                    <p>Mitra tepercaya Anda untuk pengisian ulang digital dan layanan isi ulang pulsa di berbagai operator dan platform.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Tautan cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#topup">Top Up Now</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:support@swifttopup.com">Vincent0@gmail.com</a></li>
+                        <li><a href="tel:+123456789">62+ 827 7295 7920</a></li>
+                        <li>
+                            <a href="#"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9ba89147-70ab-45ec-881c-0867bc6da02a.png" alt="Facebook logo icon"> Facebook</a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/38e5e58b-4686-4697-8452-b48b1b27760b.png" alt="Twitter logo icon"> Twitter</a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/40215b2a-d4be-4c14-9fda-a9d2e0da0e2f.png" alt="Instagram logo icon"> Instagram</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 SwiftTopUp. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle payment method details
+        document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.getElementById('credit-card-details').style.display = 'none';
+                document.getElementById('bank-details').style.display = 'none';
+                document.getElementById('paypal-details').style.display = 'none';
+                document.getElementById('ewallet-details').style.display = 'none';
+                
+                if (this.value === 'credit-card') {
+                    document.getElementById('credit-card-details').style.display = 'block';
+                } else if (this.value === 'bank-transfer') {
+                    document.getElementById('bank-details').style.display = 'block';
+                } else if (this.value === 'paypal') {
+                    document.getElementById('paypal-details').style.display = 'block';
+                } else if (this.value === 'ewallet') {
+                    document.getElementById('ewallet-details').style.display = 'block';
+                }
+            });
+        });
+        
+        // Highlight selected amount option
+        document.querySelectorAll('.amount-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.amount-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Set custom amount to empty when selecting preset amount
+                document.getElementById('custom-amount').value = '';
+            });
+        });
+        
+        // Clear preset amount selection when entering custom amount
+        document.getElementById('custom-amount').addEventListener('input', function() {
+            document.querySelectorAll('.amount-option input').forEach(radio => {
+                radio.checked = false;
+            });
+            document.querySelectorAll('.amount-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+        });
+        
+        // Form submission handler
+        document.getElementById('payment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const phoneNumber = document.getElementById('phone-number').value;
+            const email = document.getElementById('email').value;
+            const productType = document.getElementById('product-type').value;
+            const operator = document.getElementById('operator').value;
+            
+            let amount = '';
+            const selectedAmount = document.querySelector('input[name="amount"]:checked');
+            if (selectedAmount) {
+                amount = selectedAmount.value;
+            } else {
+                amount = document.getElementById('custom-amount').value;
+            }
+            
+            if (!amount) {
+                alert('Please select or enter an amount');
+                return;
+            }
+            
+            const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+            
+            // In a real app, you would send this to your payment processor
+            console.log('Payment Details:', {
+                phoneNumber,
+                email,
+                productType,
+                operator,
+                amount,
+                paymentMethod
+            });
+            
+            // Show success message (in a real app, you would redirect to a confirmation page)
+            alert(`Payment successful! ${amount} credit will be added to ${phoneNumber}. Confirmation sent to ${email}`);
+            
+            // Reset form
+            this.reset();
+            
+            // Hide all payment method details except credit card
+            document.getElementById('credit-card-details').style.display = 'block';
+            document.getElementById('bank-details').style.display = 'none';
+            document.getElementById('paypal-details').style.display = 'none';
+            document.getElementById('ewallet-details').style.display = 'none';
+            
+            // Reset amount options
+            document.querySelectorAll('.amount-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
